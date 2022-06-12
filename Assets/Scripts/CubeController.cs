@@ -25,11 +25,11 @@ public class CubeController : MonoBehaviour
         {
             transform.Translate(movementSpeed, 0, 0);
         }
-        if (Input.GetKey(KeyCode.A) && hasJump == maxJumps)
+        if (Input.GetKey(KeyCode.A))
         {
             transform.Rotate(0, -rotationSpeed, 0);
         }
-        if (Input.GetKey(KeyCode.D) && hasJump == maxJumps)
+        if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(0, rotationSpeed, 0);
         }
@@ -37,6 +37,14 @@ public class CubeController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             hasJump--;
+        }
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Plane")
+        {
+            hasJump = maxJumps;
         }
     }
 }

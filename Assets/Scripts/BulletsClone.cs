@@ -6,20 +6,17 @@ public class BulletsClone : MonoBehaviour
 {
     Rigidbody rbBala;
     public float ShotForce;
-    public GameObject objectToClone;
+    public GameObject BulletPrefab;
     // Start is called before the first frame update
     void Start()
     {
+        rbBala = BulletPrefab.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        GameObject clon;
-        clon = Instantiate(objectToClone);
-        rbBala = clon.GetComponent<Rigidbody>();
-        rbBala.AddForce(clon.transform.up * ShotForce, ForceMode.Impulse);
-        Destroy(clon, 1);
+        BulletPrefab = Instantiate(BulletPrefab) as GameObject;
+        rbBala.AddForce(transform.forward * ShotForce * Time.deltaTime);
     }
-
 }
