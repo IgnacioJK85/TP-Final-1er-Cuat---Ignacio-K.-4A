@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerCollision : MonoBehaviour
+
+public class SceneManagerScript : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -13,18 +15,14 @@ public class PlayerCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Menú");
+        }
     }
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.name == "Sphere")
-        {
-           Destroy(gameObject);
-        }
 
-        if (col.gameObject.name == "Platform")
-        {
-            
-        }
+    public void CambioDeEscenas()
+    {
+        SceneManager.LoadScene("Nivel1");
     }
 }

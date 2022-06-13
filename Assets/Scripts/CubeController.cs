@@ -42,7 +42,7 @@ public class CubeController : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Plane")
+        if (gameObject.tag == "Plane")
         {
             hasJump = maxJumps;
         }

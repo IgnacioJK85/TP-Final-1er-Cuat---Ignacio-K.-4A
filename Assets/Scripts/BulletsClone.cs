@@ -1,22 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BulletsClone : MonoBehaviour
 {
-    Rigidbody rbBala;
     public float ShotForce;
     public GameObject BulletPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
-        rbBala = BulletPrefab.GetComponent<Rigidbody>();
+        StartCoroutine(reloadTime(5));
     }
 
     // Update is called once per frame
     void Update()
+    { 
+        BulletPrefab = Instantiate(BulletPrefab);
+
+        for (int i = 0; i < 3; i++)
+        {
+            BulletPrefab.transform.position += new Vector3(5, 0, 0);
+        }
+    }
+    IEnumerator reloadTime(float reloadTimeInSeconds)
     {
-        BulletPrefab = Instantiate(BulletPrefab) as GameObject;
-        rbBala.AddForce(transform.forward * ShotForce * Time.deltaTime);
+        float counter = 0;
+
+        while (counter < reloadTimeInSeconds)
+        {
+            counter += Time.deltaTime;
+            yield return null;
+        }
     }
 }
