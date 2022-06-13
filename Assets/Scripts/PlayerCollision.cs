@@ -19,7 +19,7 @@ public class PlayerCollision : MonoBehaviour
     {
         if (col.gameObject.name == "Sphere")
         {
-           Destroy(gameObject);
+            Destroy(gameObject);    
         }
 
         if (col.gameObject.name == "Platform")
