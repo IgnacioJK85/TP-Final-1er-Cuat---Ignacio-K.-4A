@@ -15,14 +15,20 @@ public class SceneManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("Menú");
         }
     }
-
+    public void SceneDeath()
+    {
+        SceneManager.LoadScene("Death");
+    }
     public void CambioDeEscenas()
     {
         SceneManager.LoadScene("Nivel1");
+
+        
     }
 }

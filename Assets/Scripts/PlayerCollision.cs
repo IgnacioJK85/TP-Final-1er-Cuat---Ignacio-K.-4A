@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCollision : MonoBehaviour
 {
+    public Text txt;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +24,21 @@ public class PlayerCollision : MonoBehaviour
             Destroy(gameObject);    
         }
 
-        if (col.gameObject.name == "Platform")
+        if (col.gameObject.name.StartsWith("BlueCube"))
         {
-            
+            int txtj = int.Parse(txt.text);
+            txtj -= 33;
+
+            if (txtj <= 0)
+            { 
+                SceneManagerScript scenes = new SceneManagerScript();
+                scenes.SceneDeath();
+            }
+            else
+            {
+                string a = txtj.ToString();
+                txt.text = a;
+            }
         }
     }
 }
