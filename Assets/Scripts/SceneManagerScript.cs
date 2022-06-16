@@ -33,7 +33,5 @@ public class SceneManagerScript : MonoBehaviour
     public void CambioDeEscenas()
     {
         SceneManager.LoadScene("Nivel1");
-
-        
     }
 }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CubeController : MonoBehaviour
 {
+    AudioSource source;
     Quaternion originalRotation;
+    public AudioClip jumpSound;
     public float movementSpeed, rotationSpeed, jumpForce;
     public int maxJumps;
     int hasJump;
@@ -13,9 +15,11 @@ public class CubeController : MonoBehaviour
 
     void Start()
     {
+        source = GetComponent<AudioSource>();
         originalRotation = transform.rotation;
         hasJump = maxJumps;
         rb = GetComponent<Rigidbody>();
+        source.clip = jumpSound;
     }
 
     void Update()
@@ -38,6 +42,7 @@ public class CubeController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space) && hasJump > 0)
         {
+            source.Play();
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             hasJump--;
         }
@@ -50,7 +55,7 @@ public class CubeController : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.name == "Plane" || col.gameObject.transform.parent.name == "Plane")
+        if (col.gameObject.name == "Plane" || col.gameObject.name == "WhiteJump")
         {
             hasJump = maxJumps;
         }

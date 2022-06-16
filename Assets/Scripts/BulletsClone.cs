@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BulletsClone : MonoBehaviour
 {
+    public float Timer = 2;
     public Text txt;
     public Transform spawnPoint;
     public float shortForce = 1500;
@@ -22,15 +23,18 @@ public class BulletsClone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            GameObject newBullet;
-            newBullet = Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation);
-            //newBullet.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * shortForce);
-            //shotRateTime = Time.time + shotRate;
-            //Destroy(newBullet, 2);
-        }
+        GameObject newBullet;
+        Timer -= Time.deltaTime;
 
+        if (Timer <= 0f)
+        {
+            newBullet = Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation);
+            Timer = 4f;
+        }
+        //newBullet = Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation);
+        //newBullet.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * shortForce);
+        //shotRateTime = Time.time + shotRate;
+        //Destroy(newBullet, 2);
     }
 
     void OnCollisionEnter(Collision col)

@@ -39,7 +39,8 @@ public class PlayerCollision : MonoBehaviour
 
         if (col.gameObject.name == "Goal1")
         {
-
+            SceneManagerScript win = new SceneManagerScript();
+            win.WinNivel1();
         }
     }
 
