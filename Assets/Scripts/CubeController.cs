@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class CubeController : MonoBehaviour
 {
+    Quaternion originalRotation;
     public float movementSpeed, rotationSpeed, jumpForce;
     public int maxJumps;
     int hasJump;
+    public float rotationResetSpeed;
     Rigidbody rb;
 
     void Start()
     {
+        originalRotation = transform.rotation;
         hasJump = maxJumps;
         rb = GetComponent<Rigidbody>();
     }
@@ -38,13 +41,18 @@ public class CubeController : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             hasJump--;
         }
+
+        if (transform.rotation.x != 0f || transform.rotation.z != 0f)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.time * rotationResetSpeed);
+        }
     }
 
     void OnCollisionEnter(Collision col)
     {
-        if (gameObject.tag == "Plane")
+        if (col.gameObject.name == "Plane" || col.gameObject.transform.parent.name == "Plane")
         {
             hasJump = maxJumps;
         }
-    }
+    }  
 }

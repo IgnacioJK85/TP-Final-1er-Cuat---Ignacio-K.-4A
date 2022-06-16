@@ -25,6 +25,11 @@ public class SceneManagerScript : MonoBehaviour
     {
         SceneManager.LoadScene("Death");
     }
+
+    public void WinNivel1()
+    {
+        SceneManager.LoadScene("Nivel2");
+    }
     public void CambioDeEscenas()
     {
         SceneManager.LoadScene("Nivel1");
