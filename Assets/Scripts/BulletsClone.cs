@@ -23,12 +23,11 @@ public class BulletsClone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject newBullet;
         Timer -= Time.deltaTime;
 
         if (Timer <= 0f)
-        {
-            newBullet = Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation);
+        { 
+            Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation);
             Timer = 4f;
         }
         //newBullet = Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation);

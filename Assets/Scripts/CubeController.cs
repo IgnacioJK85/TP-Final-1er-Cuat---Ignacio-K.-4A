@@ -5,11 +5,11 @@ using UnityEngine;
 public class CubeController : MonoBehaviour
 {
     AudioSource source;
-    Quaternion originalRotation;
     public AudioClip jumpSound;
     public float movementSpeed, rotationSpeed, jumpForce;
     public int maxJumps;
     int hasJump;
+    public Quaternion originalRotation;
     public float rotationResetSpeed;
     Rigidbody rb;
 
@@ -47,9 +47,9 @@ public class CubeController : MonoBehaviour
             hasJump--;
         }
 
-        if (transform.rotation.x != 0f || transform.rotation.z != 0f)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.time * rotationResetSpeed);
+        if (transform.rotation.x != originalRotation.x || transform.rotation.z != originalRotation.z || transform.rotation.w != originalRotation.w)
+        { 
+            transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.smoothDeltaTime * rotationResetSpeed);
         }
     }
 
