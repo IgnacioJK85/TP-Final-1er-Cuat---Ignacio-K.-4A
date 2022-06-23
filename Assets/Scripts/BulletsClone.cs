@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BulletsClone : MonoBehaviour
 {
-    public float Timer = 2;
+    public float Timer = 3f;
     public Text txt;
     public Transform spawnPoint;
     public float shortForce = 1500;
@@ -28,7 +28,7 @@ public class BulletsClone : MonoBehaviour
         if (Timer <= 0f)
         { 
             Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation);
-            Timer = 4f;
+            Timer = 3f;
         }
         //newBullet = Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation);
         //newBullet.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * shortForce);

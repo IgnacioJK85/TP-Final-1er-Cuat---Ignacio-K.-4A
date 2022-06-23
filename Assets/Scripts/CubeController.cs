@@ -4,52 +4,67 @@ using UnityEngine;
 
 public class CubeController : MonoBehaviour
 {
-    AudioSource source;
+    AudioSource source1;
+    AudioSource source2;
+    AudioSource source3;
     public AudioClip jumpSound;
+    public AudioClip walkSound;
+    public AudioClip Win;
+
     public float movementSpeed, rotationSpeed, jumpForce;
     public int maxJumps;
     int hasJump;
+
     public Quaternion originalRotation;
     public float rotationResetSpeed;
     Rigidbody rb;
 
     void Start()
     {
-        source = GetComponent<AudioSource>();
         originalRotation = transform.rotation;
         hasJump = maxJumps;
+
+        source1 = GetComponent<AudioSource>();
+        source2 = GetComponent<AudioSource>();
+        source3 = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
-        source.clip = jumpSound;
+        source1.clip = walkSound;
+        source2.clip = jumpSound;
+        source3.clip = Win;
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Time.timeScale == 1f)
         {
-            transform.Translate(-movementSpeed, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(movementSpeed, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(0, -rotationSpeed, 0);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(0, rotationSpeed, 0);
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && hasJump > 0)
-        {
-            source.Play();
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            hasJump--;
-        }
-
-        if (transform.rotation.x != originalRotation.x || transform.rotation.z != originalRotation.z || transform.rotation.w != originalRotation.w)
-        { 
-            transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.smoothDeltaTime * rotationResetSpeed);
+            if (Input.GetKey(KeyCode.W))
+            {
+                source1.Play();
+                transform.Translate(-movementSpeed, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                source1.Play();
+                transform.Translate(movementSpeed, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.Rotate(0, -rotationSpeed, 0);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Rotate(0, rotationSpeed, 0);
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && hasJump > 0)
+            { 
+                source2.Play();
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                hasJump--;
+            }
+            if (transform.rotation.x != originalRotation.x || transform.rotation.z != originalRotation.z || transform.rotation.w != originalRotation.w)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.smoothDeltaTime * rotationResetSpeed);
+            }
         }
     }
 
@@ -58,6 +73,11 @@ public class CubeController : MonoBehaviour
         if (col.gameObject.name == "Plane" || col.gameObject.name == "WhiteJump")
         {
             hasJump = maxJumps;
+        }
+
+        if (col.gameObject.name == "Goal1")
+        {
+            source3.Play();
         }
     }  
 }
