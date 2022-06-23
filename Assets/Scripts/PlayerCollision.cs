@@ -42,6 +42,11 @@ public class PlayerCollision : MonoBehaviour
             SceneManagerScript win = new SceneManagerScript();
             win.WinNivel1MorirEnNivel2();
         }
+
+        if (col.gameObject.name == "Plane" && transform.position.x < -44.4f && transform.position.x > -84f)
+        {
+            CallDeath();
+        }
     }
 
     void CallDeath()
