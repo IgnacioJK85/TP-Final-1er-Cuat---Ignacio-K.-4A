@@ -27,9 +27,7 @@ public class BulletsClone : MonoBehaviour
     {
         if (Time.timeScale == 1f)
         {
-            Quaternion sd = spawnPoint.transform.rotation;
-            sd += new Quaternion(0, 8, 0, 0);
-
+            spawnPoint.Rotate(45.0f, 0.0f, 0.0f, Space.Self);
             for (int i = 0; i < 2; i++)
             {
                 var distance = Vector3.Distance(BulletPrefab.transform.position, transform.position);

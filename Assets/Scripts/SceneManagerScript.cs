@@ -19,6 +19,7 @@ public class SceneManagerScript : MonoBehaviour
     }
     public void SceneMenú()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Menú");
     }
     public void SceneDeath()
@@ -27,10 +28,12 @@ public class SceneManagerScript : MonoBehaviour
     }
     public void SceneNivel1()
     {
+        Time.timeScale = 1f;    
         SceneManager.LoadScene("Nivel1");
     }
     public void WinNivel1MorirEnNivel2()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Nivel2");
     }
 }

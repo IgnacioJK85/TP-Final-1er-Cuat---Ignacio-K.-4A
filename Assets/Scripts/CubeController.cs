@@ -28,9 +28,7 @@ public class CubeController : MonoBehaviour
         source2 = GetComponent<AudioSource>();
         source3 = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
-        source1.clip = walkSound;
-        source2.clip = jumpSound;
-        source3.clip = Win;
+
     }
 
     void Update()
@@ -39,12 +37,17 @@ public class CubeController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                source1.Play();
+                if (!source1.isPlaying) {
+                    source1.clip = walkSound;
+                    source1.Play(); }
+
                 transform.Translate(-movementSpeed, 0, 0);
             }
             if (Input.GetKey(KeyCode.S))
             {
-                source1.Play();
+                if (!source1.isPlaying) {
+                    source1.clip = walkSound;
+                    source1.Play(); }
                 transform.Translate(movementSpeed, 0, 0);
             }
             if (Input.GetKey(KeyCode.A))
@@ -56,7 +59,8 @@ public class CubeController : MonoBehaviour
                 transform.Rotate(0, rotationSpeed, 0);
             }
             if (Input.GetKeyDown(KeyCode.Space) && hasJump > 0)
-            { 
+            {
+                source2.clip = jumpSound;
                 source2.Play();
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 hasJump--;
@@ -77,6 +81,7 @@ public class CubeController : MonoBehaviour
 
         if (col.gameObject.name == "Goal1")
         {
+            source2.clip = Win;
             source3.Play();
         }
     }  
