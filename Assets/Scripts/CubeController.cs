@@ -37,17 +37,21 @@ public class CubeController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                if (!source1.isPlaying) {
+                if (!source1.isPlaying) 
+                {
                     source1.clip = walkSound;
-                    source1.Play(); }
+                    source1.Play(); 
+                }
 
                 transform.Translate(-movementSpeed, 0, 0);
             }
             if (Input.GetKey(KeyCode.S))
             {
-                if (!source1.isPlaying) {
+                if (!source1.isPlaying) 
+                {
                     source1.clip = walkSound;
-                    source1.Play(); }
+                    source1.Play(); 
+                }
                 transform.Translate(movementSpeed, 0, 0);
             }
             if (Input.GetKey(KeyCode.A))
@@ -67,7 +71,7 @@ public class CubeController : MonoBehaviour
             }
             if (transform.rotation.x != originalRotation.x || transform.rotation.z != originalRotation.z || transform.rotation.w != originalRotation.w)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.smoothDeltaTime * rotationResetSpeed);
+                transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.deltaTime * rotationResetSpeed);
             }
         }
     }
