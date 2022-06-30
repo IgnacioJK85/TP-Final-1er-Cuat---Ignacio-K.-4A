@@ -5,23 +5,24 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public float Timerr = 30f;
-    public Text txtnivel1;
+    public float Timerr = 3f;
+    public Text txtnivel;
     // Start is called before the first frame update
     void Start()
     {
-         
     }
 
     // Update is called once per frame
     void Update()
-    {
-        Timerr -= Time.deltaTime;
-        txtnivel1.enabled = true;
+    {        
+        Time.timeScale = 0f;
+        Timerr -= Time.unscaledDeltaTime;
+        txtnivel.enabled = true;
 
         if (Timerr <= 0f)
         {
-            txtnivel1.enabled = false;
+            Time.timeScale = 1f;
+            txtnivel.enabled = false;
         }
     }
 

@@ -24,6 +24,7 @@ public class CubeController : MonoBehaviour
         originalRotation = transform.rotation;
         hasJump = maxJumps;
 
+        gameObject.GetComponent<Renderer>().enabled = false;
         source1 = GetComponent<AudioSource>();
         source2 = GetComponent<AudioSource>();
         source3 = GetComponent<AudioSource>();
@@ -84,9 +85,11 @@ public class CubeController : MonoBehaviour
         }
 
         if (col.gameObject.name == "Goal1")
-        {
-            source2.clip = Win;
+        {        
+            source3.clip = Win;
             source3.Play();
+            SceneManagerScript scene = new SceneManagerScript();
+            scene.WinNivel1MorirEnNivel2();
         }
     }  
 }

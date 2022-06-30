@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BulletsClone : MonoBehaviour
 {
     public float Timer = 3f;
-    //public Text txt;
+    public Text txt;
     public GameObject myCube;
     public Transform spawnPoint;
     public float shortForce = 1500;
@@ -27,7 +27,18 @@ public class BulletsClone : MonoBehaviour
     {
         if (Time.timeScale == 1f)
         {
-            spawnPoint.Rotate(45.0f, 0.0f, 0.0f, Space.Self);
+            spawnPoint.Rotate(25.0f, 0.0f, 0.0f, Space.Self);
+
+            if (spawnPoint.rotation.z < 0f)
+            {
+                spawnPoint.Rotate(25.0f, 0.0f, 0.0f, Space.Self);
+
+            }
+            else if (spawnPoint.rotation.z > 180f)
+            {
+                spawnPoint.Rotate(-25.0f, 0.0f, 0.0f, Space.Self);
+
+            }
             for (int i = 0; i < 2; i++)
             {
                 var distance = Vector3.Distance(BulletPrefab.transform.position, transform.position);
@@ -36,7 +47,8 @@ public class BulletsClone : MonoBehaviour
                 if (Timer <= 0f && distance > c)
                 {
                     Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation);
-                    Timer = 3f;
+                    transform.Rotate(0.0f, 0.0f, 25.0f);
+                    Timer = 2;
                 }
 
                 //newBullet = Instantiate(BulletPrefab, spawnPoint.position, spawnPoint.rotation);
@@ -49,14 +61,21 @@ public class BulletsClone : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        /*if (col.gameObject.name == "Bullets")
+        if (col.gameObject == BulletPrefab)
         {
-            string txtt = txt.text;
-            int txtnum = int.Parse(txtt);
-            txtnum = txtnum - 30;
+            int txtint = int.Parse(txt.text);
+            txtint--;
 
-            string txttt = txtnum.ToString();
-            txt.text = txttt;
-        }*/
+
+            if (txtint <= 0)
+            {
+                SceneManagerScript o = new SceneManagerScript();
+                o.SceneDeath();
+            }
+            else
+            {
+                txt.text = txtint.ToString();
+            }
+        }
     }
 }

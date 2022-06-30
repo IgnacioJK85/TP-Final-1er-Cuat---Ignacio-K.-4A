@@ -15,6 +15,12 @@ public class PlatformMov : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        blueCube1.GetComponent<Renderer>().enabled = false;
+        blueCube2.GetComponent<Renderer>().enabled = false;
+        blueCube3.GetComponent<Renderer>().enabled = false;
+        blueCube4.GetComponent<Renderer>().enabled = false;
+        blueCube5.GetComponent<Renderer>().enabled = false;
+
         toRight = false;
     }
 
@@ -42,19 +48,22 @@ public class PlatformMov : MonoBehaviour
                 blueCube4.transform.position += new Vector3(0, 0, speedOfMov);
             }
 
-            if (blueCube1.transform.position.z < -14.7f && blueCube3.transform.position.z < -14.7f && blueCube5.transform.position.z < -14.7f)
+            if (blueCube1.transform.position.z < -22.6f && blueCube3.transform.position.z < -22.6f && blueCube5.transform.position.z < -22.6f)
             {
                 toRight = false;
             }
-            if (blueCube2.transform.position.z > 16.4f && blueCube4.transform.position.z > 16.4f)
+            if (blueCube2.transform.position.z > 23.7f && blueCube4.transform.position.z > 23.7f)
             {
                 toRight = true;
             }
-
-            if (blueCube1.transform.position.z > 16.4f && blueCube3.transform.position.z > 16.4f && blueCube5.transform.position.z > 16.4f)
+            if (blueCube1.transform.position.z > 23.7f && blueCube3.transform.position.z > 23.7f && blueCube5.transform.position.z > 23.7f)
             {
                 toRight = false;
             }
+        }
+        else
+        {
+
         }
     }
 }
