@@ -41,6 +41,27 @@ public class PlayerCollision : MonoBehaviour
         {
             CallDeath();
         }
+
+        if (col.gameObject.name == "Bullets(Clone)")
+        {
+            int txtint = int.Parse(txt.text);
+            txtint--;
+
+            if (txtint <= 0)
+            {
+                CallDeath();
+            }
+            else
+            {
+                txt.text = txtint.ToString();
+            }
+        }
+
+        if (col.gameObject.name == "Goal2")
+        {
+            SceneManagerScript scenes = new SceneManagerScript();
+            scenes.WinNivel2();
+        }
     }
 
     void CallDeath()

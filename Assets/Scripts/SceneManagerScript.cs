@@ -36,4 +36,9 @@ public class SceneManagerScript : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("Nivel2");
     }
+    public void WinNivel2()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Win");
+    }
 }
